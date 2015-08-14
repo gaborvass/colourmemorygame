@@ -1,9 +1,7 @@
 //
 //  HighscoreItemProtocol.m
 //  ColourMemory
-//
-//  Created by Vass, Gabor on 12/08/15.
-//  Copyright (c) 2015 Gabor, Vass. All rights reserved.
+//  Interface definition of High Score objects
 //
 
 #import <Foundation/Foundation.h>
@@ -13,6 +11,11 @@
 @property (nonatomic, retain, readonly) NSString* username;
 @property (nonatomic, assign, readonly) int score;
 
+/**
+ Custom init method
+ @param username: name of the user
+ @param score: result score
+*/
 -(id) init:(NSString*)username score:(int)score;
 
 @end

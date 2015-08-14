@@ -2,14 +2,18 @@
 //  GameViewController.m
 //  ColourMemory
 //
-//  Created by Vass, Gabor on 13/08/15.
-//  Copyright (c) 2015 Gabor, Vass. All rights reserved.
 //
 
 #import "GameViewController.h"
 #import "UIImageView+Card.h"
 #import "AppDelegate.h"
 #import "HighscoreItem.h"
+
+#define LOGO_IMG    @"logo"
+#define CARD_BG_IMG @"card_bg"
+#define CARD_ID     @"colour%d"
+#define SHOW_HIGHSCORE_SEGUE_ID @"showHighscores"
+
 
 @interface UINavigationController(GameController)
 
@@ -45,7 +49,7 @@ static int SPACING = 5;
     
     [super viewDidLoad];
     
-    UIImage* img_logo = [UIImage imageNamed:@"logo"];
+    UIImage* img_logo = [UIImage imageNamed:LOGO_IMG];
     
     UIImageView* uiv = [[UIImageView alloc] initWithImage:img_logo];
     [uiv setFrame:CGRectMake(0, 0, 80, 30)];
@@ -75,7 +79,7 @@ static int SPACING = 5;
     CGFloat y = self.view.bounds.size.height;
     
     x = x - 2 * MARGIN_X;
-    y = y - 2 * MARGIN_Y - 55;
+    y = y - 2 * MARGIN_Y - self.navigationController.navigationBar.frame.size.height;
     
     calculated_row_height = y / NUM_OF_ROWS;
     calculated_column_width = x / NUM_OF_COLUMNS;
@@ -85,7 +89,7 @@ static int SPACING = 5;
     
     
     
-    UIImage* card_bgImage = [UIImage imageNamed:@"card_bg"];
+    UIImage* card_bgImage = [UIImage imageNamed:CARD_BG_IMG];
     
     for(int row = 0; row < 4; ++row){
         for(int column = 0; column < 4; ++column){
@@ -112,7 +116,7 @@ static int SPACING = 5;
 
 
 -(void) clearCard:(UIImageView*)imageView{
-    UIImage* cardImage = [UIImage imageNamed:@"card_bg"];
+    UIImage* cardImage = [UIImage imageNamed:CARD_BG_IMG];
     [self flipCard:imageView cardImage:cardImage];
     [self.view setUserInteractionEnabled:YES];
 }
@@ -179,7 +183,7 @@ static int SPACING = 5;
         int selectionTimes;
         NSString* cardId;
         do {
-            cardId = [NSString stringWithFormat:@"colour%d",arc4random_uniform(8)+1];
+            cardId = [NSString stringWithFormat:CARD_ID,arc4random_uniform(8)+1];
             selectionTimes = [[selectedCards objectForKey:cardId] intValue];
         } while (selectionTimes == 2);
         
@@ -206,7 +210,7 @@ static int SPACING = 5;
         score = 0;
         [self createLaout];
     }else{
-        [self performSegueWithIdentifier:@"showHighscores" sender:self];
+        [self performSegueWithIdentifier:SHOW_HIGHSCORE_SEGUE_ID sender:self];
     }
     
 }

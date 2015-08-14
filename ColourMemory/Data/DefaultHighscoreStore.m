@@ -2,8 +2,6 @@
 //  DefaultHighscoreStore.m
 //  ColourMemory
 //
-//  Created by Vass, Gabor on 12/08/15.
-//  Copyright (c) 2015 Gabor, Vass. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
@@ -42,7 +40,7 @@
                 if(newHighscore.score < highscore.score){
                     [copiedHighscores addObject:highscore];
                 } else if (newHighscore.score == highscore.score){
-                    // newer comes first
+                    // latest comes first
                     [copiedHighscores addObject:newHighscore];
                     [copiedHighscores addObject:highscore];
                     newRank = (int)idx;

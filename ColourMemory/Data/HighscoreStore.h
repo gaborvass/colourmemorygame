@@ -2,8 +2,7 @@
 //  HighscoreStore.h
 //  ColourMemory
 //
-//  Created by Vass, Gabor on 14/08/15.
-//  Copyright (c) 2015 Gabor, Vass. All rights reserved.
+//  Manages high scores and high score stores
 //
 
 #import <Foundation/Foundation.h>
@@ -11,6 +10,9 @@
 
 @interface HighscoreStore : NSObject <HighscoreStoreProtocol>
 
+/**
+ Register store implementation
+*/
 +(void) registerStore:(id<HighscoreStoreProtocol>)store;
 
 @end
