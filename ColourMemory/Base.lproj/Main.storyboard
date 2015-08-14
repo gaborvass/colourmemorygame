@@ -33,7 +33,20 @@
                     <view key="view" contentMode="scaleToFill" id="pU0-ni-2wW">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="5WB-Xo-EvI">
+                                <rect key="frame" x="150" y="240" width="300" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="ID6-B5-vGZ"/>
+                                    <constraint firstAttribute="width" constant="300" id="JV5-wM-uM8"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="centerX" secondItem="5WB-Xo-EvI" secondAttribute="centerX" id="3rB-zC-iJ2"/>
+                            <constraint firstAttribute="centerY" secondItem="5WB-Xo-EvI" secondAttribute="centerY" id="aLP-Og-IM9"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="0 points" id="aa1-1J-Q53">
                         <barButtonItem key="rightBarButtonItem" title="Highscores" id="W1B-la-p8i">
@@ -104,7 +117,6 @@
                                 </connections>
                             </containerView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="zcN-J0-187" firstAttribute="top" secondItem="13Q-5g-eLY" secondAttribute="bottom" id="EYd-xn-KWg"/>
                             <constraint firstItem="POJ-vZ-p0x" firstAttribute="leading" secondItem="kL9-cP-9Y9" secondAttribute="leadingMargin" constant="-16" id="Hxg-dk-8Qa"/>
@@ -188,4 +200,7 @@
             <point key="canvasLocation" x="798" y="-1338"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="logo" width="267" height="107"/>
+    </resources>
 </document>

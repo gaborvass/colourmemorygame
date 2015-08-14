@@ -45,7 +45,9 @@ static int SPACING = 5;
     
     [super viewDidLoad];
     
-    UIImageView* uiv = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"logo"]];
+    UIImage* img_logo = [UIImage imageNamed:@"logo"];
+    
+    UIImageView* uiv = [[UIImageView alloc] initWithImage:img_logo];
     [uiv setFrame:CGRectMake(0, 0, 80, 30)];
     UIBarButtonItem* barItem = [[UIBarButtonItem alloc] initWithCustomView:uiv];
     
@@ -61,7 +63,12 @@ static int SPACING = 5;
     [self generateCards];
     
     for(UIView* subView in self.view.subviews){
-        [subView removeFromSuperview];
+        if([subView isKindOfClass:[UIImageView class]]){
+            UIImageView* imgView = (UIImageView*)subView;
+            if(imgView.cardId != nil){
+                [subView removeFromSuperview];
+            }
+        }
     }
     
     CGFloat x = self.view.bounds.size.width;
@@ -116,6 +123,13 @@ static int SPACING = 5;
     } completion:nil];
 }
 
+-(void) removeCard:(UIImageView*)imageView{
+    [self.view setUserInteractionEnabled:YES];
+    [UIView transitionWithView:imageView duration:0.5f options:UIViewAnimationOptionTransitionCrossDissolve animations:^{
+        [imageView setHidden:YES];
+    } completion:nil];
+}
+
 -(void) cardSelected:(UIGestureRecognizer*)sender{
     
     UIImageView* selectedIV = (UIImageView*)sender.view;
@@ -131,12 +145,14 @@ static int SPACING = 5;
     }else {
         [self flipCard:selectedIV cardImage:cardImage];
         if([self.selectedCard.cardId isEqualToString:cardId]){
-            [selectedIV setUserInteractionEnabled:NO];
+            [self.view setUserInteractionEnabled:NO];
+
+            [self performSelector:@selector(removeCard:) withObject:selectedIV afterDelay:1.0f];
+            [self performSelector:@selector(removeCard:) withObject:self.selectedCard afterDelay:1.0f];
             score += 2;
             numOfPairsFound++;
             if(numOfPairsFound == 8){
-                
-                UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Finished" message:@"Enter your name" delegate:self cancelButtonTitle:@"Save" otherButtonTitles: nil];
+                UIAlertView* av = [[UIAlertView alloc] initWithTitle:@"Finished" message:@"Enter your name" delegate:self cancelButtonTitle:nil otherButtonTitles:@"Save", nil];
                 av.alertViewStyle = UIAlertViewStylePlainTextInput;
                 [[av textFieldAtIndex:0] setText:@""];
                 [av show];
