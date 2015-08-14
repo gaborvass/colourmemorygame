@@ -111,6 +111,7 @@ static int SPACING = 5;
             [self.view addSubview:cardView];
         }
     }
+    numOfPairsFound = 0;
     self.navigationItem.title = [NSString stringWithFormat:@"%d points", score];
 }
 
